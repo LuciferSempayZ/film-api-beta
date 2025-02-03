@@ -12,7 +12,12 @@ class Movie extends Model
     protected $fillable = [
         'title', 'release_year', 'duration', 'description', 'photo', 'studio_id', 'age_rating_id',
     ];
+    protected $appends = ['photo_absolute_path'];
 
+    public function getPhotoAbsolutePathAttribute()
+    {
+        return $this->photo ? storage_path('app' . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . $this->photo) : null;
+    }
     public function genres()
     {
         return $this->belongsToMany(Genre::class, 'movie_genres', 'movie_id', 'genre_id');
