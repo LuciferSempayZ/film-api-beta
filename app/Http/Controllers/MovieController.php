@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Favorite;
 use App\Models\Movie;
 use App\Http\Requests\MovieRequest;
+use App\Models\Rating;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -98,8 +99,9 @@ class MovieController extends Controller
      * Удалить фильм
      */
     public function destroy($id) {
+        // Удаляем все оценки, связанные с этим фильмом
+        Rating::where('movies_id', $id)->delete();
         $movie = Movie::find($id);
-
         if (!$movie) {
             return response()->json(['message' => 'Фильм не найден'], 404);
         }

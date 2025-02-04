@@ -17,7 +17,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 
 // Защищённые маршруты
 Route::middleware('auth:sanctum')->group(function () {
-    // Пользователи
 
 // Получить данные текущего пользователя
     Route::get('/user', [UserController::class, 'show']);

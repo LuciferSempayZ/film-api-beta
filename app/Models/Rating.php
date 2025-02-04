@@ -12,7 +12,7 @@ class Rating extends Model
     protected $table = 'rating';  // Указываем правильное имя таблицы
 
     protected $fillable = [
-        'movies_id', 'rating', 'review_text', 'users_id',
+        'movies_id', 'review_text', 'users_id',
     ];
 
     public function movie()
