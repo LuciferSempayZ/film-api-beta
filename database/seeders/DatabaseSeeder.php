@@ -16,7 +16,6 @@ class DatabaseSeeder extends Seeder
             StudiosSeeder::class,
             AgeRatingSeeder::class,
             MoviesSeeder::class,
-            SerialsSeeder::class,
             FavoritesSeeder::class,
             RatingsSeeder::class,
             ActorsSeeder::class,

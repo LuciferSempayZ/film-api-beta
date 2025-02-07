@@ -14,8 +14,8 @@ class RatingController extends Controller
      */
     public function index()
     {
-        $ratings = Rating::with(['movie', 'user'])->get(); // Загружаем связанные фильмы и пользователей
-        return response()->json($ratings, 200);
+        $ratings = Rating::with(['user', 'movie'])->get();
+        return response()->json($ratings);
     }
 
     /**
