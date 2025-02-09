@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Favorite;
 use App\Models\Movie;
 use App\Http\Requests\MovieRequest;
+use App\Models\MovieService;
 use App\Models\Rating;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -37,22 +38,22 @@ class MovieController extends Controller
     {
         $data = $request->validated();
 
-        // Проверяем наличие файла изображения и сохраняем его
+        // Обработка фото
         if ($request->hasFile('photo')) {
             $data['photo'] = $request->file('photo')->store('movies/photos', 'public');
         }
 
-        // Создаем фильм
+        // Создание фильма
         $movie = Movie::create($data);
 
-        // Если переданы жанры, привязываем их к фильму
+        // Привязка жанров
         if ($request->has('genres')) {
             $movie->genres()->sync($request->input('genres'));
         }
 
         return response()->json([
             'message' => 'Фильм успешно добавлен.',
-            'movie' => $movie->load('genres'), // Загружаем связанные жанры
+            'movie' => $movie->load('genres'),
         ], 201);
     }
     /**
@@ -60,30 +61,26 @@ class MovieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Найти фильм по ID
         $movie = Movie::find($id);
-
         if (!$movie) {
             return response()->json(['message' => 'Фильм не найден'], 404);
         }
 
-        // Получить все данные из запроса
         $data = $request->all();
 
-        // Если передан файл изображения, обработать его
+        // Обновление фото
         if ($request->hasFile('photo')) {
             $data['photo'] = $request->file('photo')->store('movies/photos', 'public');
         }
 
-        // Обновление данных фильма
         $movie->update($data);
 
-        // Обновление жанров, если переданы
+        // Обновление жанров
         if ($request->has('genres')) {
             $movie->genres()->sync($request->input('genres'));
         }
 
-        // Обновление актёров, если переданы
+        // Обновление актёров
         if ($request->has('actors')) {
             $movie->actors()->sync($request->input('actors'));
         }

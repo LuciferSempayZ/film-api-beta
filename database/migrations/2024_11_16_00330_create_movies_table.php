@@ -22,6 +22,7 @@ class CreateMoviesTable extends Migration
                 ->constrained('age_rating') // AgeRatingID (ссылаемся на таблицу age_rating)
                 ->onDelete('cascade'); // Удаление записи фильма при удалении возрастного рейтинга
             $table->timestamps(); // Добавление полей created_at и updated_at
+            $table->string('watch_url')->nullable(); // Новое поле для ссылки
         });
     }
 

@@ -19,6 +19,7 @@ class MoviesSeeder extends Seeder
                 'photo' => 'inception.jpg',
                 'studio_id' => 1,
                 'age_rating_id' => 3,
+                'watch_url' => 'https://www.kinopoisk.ru/film/447301/',
             ],
             [
                 'title' => 'Avengers: Endgame',
@@ -28,6 +29,7 @@ class MoviesSeeder extends Seeder
                 'photo' => 'endgame.jpg',
                 'studio_id' => 2,
                 'age_rating_id' => 3,
+                'watch_url' => 'https://www.kinopoisk.ru/film/843650/',
             ],
         ]);
     }

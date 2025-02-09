@@ -4,6 +4,7 @@ use App\Http\Controllers\ActorController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\MovieServiceController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\StudioController;
 use App\Http\Controllers\UserController;
@@ -42,7 +43,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/studios', [StudioController::class, 'store']);
     Route::post('/studios/{id}', [StudioController::class, 'update']);
     Route::delete('/studios/{id}', [StudioController::class, 'destroy']);
-
     // Жанры
     Route::post('/genres', [GenreController::class, 'store']);
     Route::post('/genres/{id}', [GenreController::class, 'update']);
@@ -50,6 +50,7 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 // Публичные маршруты
+Route::get('/movie-services', [MovieServiceController::class, 'index']); // Просмотр всех сервисов для просмотра фильмов
 Route::get('/movies', [MovieController::class, 'index']); // Просмотр всех фильмов
 Route::get('/movies/{id}', [MovieController::class, 'show']); // Просмотр конкретного фильма
 Route::get('/genres', [GenreController::class, 'index']); // Просмотр всех жанров

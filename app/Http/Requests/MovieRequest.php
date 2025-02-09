@@ -18,6 +18,7 @@ class MovieRequest extends FormRequest
             'age_rating_id' => 'required|exists:age_rating,id',
             'actors' => 'nullable|array',
             'actors.*' => 'exists:actors,id',
+            'watch_url' => 'nullable|url|max:500',
         ];
     }
 
@@ -41,6 +42,8 @@ class MovieRequest extends FormRequest
             'age_rating_id.exists' => 'Указанный возрастной рейтинг не найден.',
             'actors.array' => 'Актеры должны быть массивом.',
             'actors.*.exists' => 'Указанный актер не найден.',
+            'watch_url.url' => 'Ссылка на фильм должна быть корректным URL.',
+            'watch_url.max' => 'Ссылка не должна превышать 500 символов.',
         ];
     }
 }

@@ -10,7 +10,14 @@ class Movie extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'release_year', 'duration', 'description', 'photo', 'studio_id', 'age_rating_id',
+        'title',
+        'release_year',
+        'duration',
+        'description',
+        'photo',
+        'studio_id',
+        'age_rating_id',
+        'watch_url',
     ];
     protected $appends = ['photo_absolute_path'];
 
